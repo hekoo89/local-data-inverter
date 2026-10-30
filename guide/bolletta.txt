@@ -1,0 +1,182 @@
+LOCAL DATA INVERTER 1.15 — GUIDA PASSO PASSO: COSTI DALLA BOLLETTA
+29 ottobre 2026
+
+A cosa serve: con questi dati l'app stima quanto spendi e quanto risparmi
+grazie al sole, oggi e nel mese, e quanto sarà la prossima bolletta.
+Sono STIME: non sostituiscono la bolletta vera.
+
+Dove si scrive: nell'app tocca l'ingranaggio ⚙️ in alto a destra e scorri fino
+a "Costo dell'energia (dalla bolletta)".
+
+
+PRIMA DI INIZIARE
+-----------------
+- Prendi una bolletta recente, meglio quella con il DETTAGLIO dei costi (di
+  solito nelle ultime pagine, a volte si scarica dall'area clienti del
+  fornitore come "bolletta di dettaglio" o "elementi di dettaglio").
+- Usa sempre i valori SENZA IVA: l'IVA la aggiunge l'app.
+- Il POD e il codice cliente NON servono.
+- Basta il passo 1 per iniziare. Gli altri rendono la stima più precisa.
+
+
+PASSO 1 — PREZZO ENERGIA (€/kWh) — OBBLIGATORIO
+-----------------------------------------------
+Dove: voce "Spesa per la materia energia" (o "Spesa per la vendita"),
+riga "quota energia" o "prezzo energia", in €/kWh.
+- Se il prezzo è diviso per fasce (F1, F2, F3 oppure F1 e F23), l'app usa un
+  prezzo unico: fai così
+    totale in € delle righe "quota energia" della materia energia
+    ÷ kWh consumati nel periodo della bolletta
+  e scrivi il risultato.
+- Se le "perdite di rete" sono una riga a parte, aggiungile: in pratica
+  aumenta il prezzo di circa il 10% (es. 0,110 → 0,121).
+- Prezzo variabile (legato al PUN): cambia ogni mese. Scrivi quello
+  dell'ultima bolletta e aggiornalo ogni tanto.
+Esempio: 0,12
+
+
+PASSO 2 — IVA (%)
+-----------------
+Dove: riepilogo della bolletta, riga IVA.
+Per le case di residenza di solito è 10.
+Esempio: 10
+
+
+PASSO 3 — POTENZA DEL CONTATORE (kW)
+------------------------------------
+Dove: prima pagina o "dati della fornitura", voce "potenza impegnata"
+(NON "potenza disponibile", che è più alta del 10%).
+Di solito 3; con pompe di calore o piani a induzione spesso 4,5 o 6.
+Serve per due cose:
+- accise: l'esenzione vale solo fino a 3 kW (vedi passo 6);
+- semaforo: avvisa ("Contatore") se un elettrodomestico farebbe staccare il
+  contatore quando la batteria non basta.
+Esempio: 3
+
+
+PASSO 4 — LA BOLLETTA ARRIVA OGNI MESE O OGNI DUE MESI
+------------------------------------------------------
+Dove: "periodo di fatturazione" o "periodo di riferimento" in prima pagina.
+- Un mese (es. 01/10 - 31/10): scegli "ogni mese".
+- Due mesi (es. 01/09 - 31/10): scegli "ogni due mesi".
+IMPORTANTE: sceglilo PRIMA di scrivere quote fisse e canone RAI (passi 7 e 8),
+perché quei due valori si scrivono "come li leggi in una bolletta".
+
+
+PASSO 5 — RETE E ONERI DI SISTEMA (€/kWh)
+-----------------------------------------
+Apri "Altre voci della bolletta (facoltative)".
+Dove: due voci della bolletta, prendi SOLO le righe "quota energia" (€/kWh):
+- "Spesa per il trasporto e la gestione del contatore" → quota energia
+- "Spesa per oneri di sistema" (a volte ASOS e ARIM separate) → quota energia
+Somma i €/kWh e scrivi il totale.
+Metodo veloce: totale in € di quelle righe "quota energia" ÷ kWh consumati.
+Le quote fisse e la quota potenza di queste voci NON vanno qui: vanno al passo 7.
+Questi valori li aggiorna ARERA ogni tre mesi: ricontrollali ogni tanto.
+Esempio: 0,045
+
+
+PASSI 6, 7, 8 IN UN COLPO: PULSANTE "VALORI TIPICI"
+---------------------------------------------------
+Il pulsante "Valori tipici" (sotto potenza e periodo) scrive da solo, SOLO
+nei campi ancora vuoti, le voci uguali per tutti:
+- accise 0,0227 €/kWh;
+- esenzione accise 150 / 220 kWh al mese, solo se il contatore è fino a 3 kW;
+- IVA 10%;
+- canone RAI 9 € (bolletta mensile) o 18 € (bimestrale).
+Prima scrivi potenza del contatore e periodo (passi 3 e 4), poi premilo.
+I campi già scritti da te non vengono toccati. Controlla comunque i valori con
+la tua bolletta: accise e canone possono cambiare con la legge di bilancio.
+
+
+PASSO 6 — ACCISE (€/kWh) ED ESENZIONE
+-------------------------------------
+Dove: voce "Spesa per imposte" (o "Imposte"), riga "accisa".
+- Accise: di solito 0,0227 €/kWh.
+- "Primi kWh/mese senza accise" (150) e "L'esenzione cala oltre" (220):
+  SOLO per chi abita lì (residente) e ha il contatore fino a 3 kW.
+  Come funziona: fino a 150 kWh al mese non si pagano accise; oltre 220 kWh
+  l'esenzione si riduce, e a 370 kWh al mese si pagano su tutto.
+- Contatore oltre 3 kW o casa non di residenza: niente esenzione. Con più di
+  3 kW l'app spegne da sola quei due campi.
+
+
+PASSO 7 — QUOTE FISSE (€ in una bolletta)
+-----------------------------------------
+Sono le voci che paghi anche se non consumi. Somma i € (senza IVA) di:
+- "Spesa per la materia energia" → quota fissa (commercializzazione);
+- "Spesa per il trasporto e la gestione del contatore" → quota fissa e quota
+  potenza;
+- "Spesa per oneri di sistema" → quota fissa (c'è solo per chi non è
+  residente).
+Scrivi il totale di UNA bolletta, così com'è: l'app lo divide da sola per i
+mesi (passo 4).
+Esempio bimestrale: 22 (= 11 € al mese)
+
+
+PASSO 8 — CANONE RAI (€ in una bolletta)
+----------------------------------------
+Dove: voce "Canone di abbonamento alla televisione".
+Si paga 9 € al mese da gennaio a ottobre (10 rate, 90 € l'anno):
+- bolletta mensile: 9
+- bolletta bimestrale: 18
+Lascialo vuoto se non è in bolletta (es. esenti, oltre 75 anni con i
+requisiti, nessun televisore). Novembre e dicembre l'app lo toglie da sola.
+
+
+PASSO 9 — SALVA
+---------------
+Premi "Salva" in fondo alle impostazioni.
+Senza il prezzo dell'energia le caselle "Bolletta stimata" e "Risparmio"
+restano nascoste: l'app lo dice con un avviso.
+
+
+FACOLTATIVO — IL MESE IN CORSO SUBITO COMPLETO
+----------------------------------------------
+Se installi l'app a metà mese, il mese parte da zero. Per averlo intero:
+apri l'app del produttore (Solarman, SolisCloud...), copia i kWh di "energia acquistata dalla rete" e di "consumo
+della casa" dall'inizio del mese, scrivili nei due campi del mese e premi
+Salva. Serve l'inverter collegato.
+
+
+COSA VEDRAI
+-----------
+- "Speso oggi" e "Risparmiato oggi": prelievi dalla rete del giorno, più la
+  parte del giorno di quote fisse e canone.
+- "Speso nel mese" e "Risparmio mese".
+- In alto, "Bolletta stimata": prelievi già fatti più quote fisse e canone del
+  periodo intero. NON conta i prelievi futuri: a fine periodo si avvicina a
+  quella vera.
+  Con la bimestrale diventa "Bolletta stimata (2 mesi)": i mesi vanno a
+  coppie (gennaio-febbraio, marzo-aprile, ..., novembre-dicembre).
+
+
+ESEMPIO COMPLETO (bimestrale, contatore 3 kW, residente)
+--------------------------------------------------------
+Prezzo energia 0,12 · IVA 10 · Potenza 3 · Ogni due mesi
+Rete e oneri 0,045 · Valori tipici (accise 0,0227, esenzione 150/220,
+canone 18) · Quote fisse 22
+Con 85 kWh prelevati a settembre e 45 a ottobre:
+  settembre: 85 × (0,12 + 0,045) × 1,10 + 11 × 1,10 + 9 = 36,53 €
+  ottobre:   45 × (0,12 + 0,045) × 1,10 + 11 × 1,10 + 9 = 29,27 €
+  Bolletta stimata (2 mesi) ≈ 65,80 €
+  (accise zero perché si resta sotto 150 kWh al mese).
+
+
+PERCHÉ LA STIMA PUÒ ESSERE DIVERSA DALLA BOLLETTA VERA
+------------------------------------------------------
+- Conguagli, ricalcoli, letture stimate dal distributore.
+- Bonus sociale, interessi, oneri diversi: l'app non li conosce.
+- Prezzi per fasce o variabili: l'app usa un prezzo unico.
+- Bimestri sfasati (es. febbraio-marzo): la stima dei due mesi è spostata di
+  un mese; spesa di oggi e del mese restano giuste.
+- Giorni con l'app chiusa a lungo e senza letture dei contatori.
+Se la differenza è grande, ricontrolla prima il passo 1 (prezzo) e il passo 5
+(rete e oneri): sono quelli che pesano di più.
+
+
+QUANDO AGGIORNARE I VALORI
+--------------------------
+- Quando cambia il prezzo del fornitore (offerta nuova o prezzo variabile).
+- Ogni tre mesi per rete e oneri (aggiornamenti ARERA).
+- A gennaio per accise e canone RAI (legge di bilancio).

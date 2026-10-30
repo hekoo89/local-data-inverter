@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Local Data Inverter · il tuo fotovoltaico sotto controllo</title>
+<meta name="description" content="App Android gratuita che legge l'inverter Deye o Afore direttamente dalla chiavetta Wi-Fi Solarman, in casa, senza cloud e senza account.">
+<meta property="og:title" content="Local Data Inverter">
+<meta property="og:description" content="Il tuo fotovoltaico sotto controllo: app Android gratuita, senza cloud, dati in locale.">
+<meta property="og:image" content="foto/presentazione.jpg">
+<link rel="icon" href="icona.png">
+<style>
+  /* Colori presi dalla grafica del gruppo: blu notte per i titoli, verde per i tasti */
+  :root {
+    --testo: #14233c;
+    --tenue: #4d5b70;
+    --verde: #2e8b3e;
+    --verde-scuro: #1f6b2d;
+    --verde-chiaro: #e8f5ea;
+    --sfondo: #f6f9f7;
+    --scheda: #ffffff;
+    --bordo: #dfe8e2;
+    --giallo: #f5b82e;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    color: var(--testo);
+    background: var(--sfondo);
+    line-height: 1.55;
+    font-size: 17px;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: var(--verde-scuro); }
+  .larga { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+
+  /* Testata */
+  header { background: var(--scheda); border-bottom: 1px solid var(--bordo); }
+  header .larga { display: flex; align-items: center; gap: 12px; padding-top: 10px; padding-bottom: 10px; }
+  header img { width: 40px; height: 40px; border-radius: 10px; }
+  header b { font-size: 19px; }
+  header nav { margin-left: auto; display: flex; gap: 18px; font-size: 15px; }
+  header nav a { text-decoration: none; color: var(--tenue); }
+  @media (max-width: 640px) { header nav { display: none; } }
+
+  /* Apertura */
+  .apertura { padding: 40px 0 28px; }
+  .apertura .larga { display: grid; grid-template-columns: 1fr 1.15fr; gap: 32px; align-items: center; }
+  h1 { font-size: clamp(32px, 6vw, 50px); line-height: 1.08; margin: 0 0 12px; letter-spacing: -0.5px; }
+  h1 span { color: var(--verde); }
+  .sotto { font-size: 19px; color: var(--tenue); margin: 0 0 22px; }
+  .tasto {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--verde); color: #fff; text-decoration: none;
+    font-weight: 700; font-size: 19px; padding: 15px 26px; border-radius: 999px;
+    box-shadow: 0 6px 18px rgba(46, 139, 62, .3);
+  }
+  .tasto:hover { background: var(--verde-scuro); }
+  .tasto.secondario { background: var(--scheda); color: var(--verde-scuro); border: 2px solid var(--verde); box-shadow: none; }
+  .dopo-tasto { font-size: 14px; color: var(--tenue); margin-top: 10px; }
+  .pregi { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+  .pregi span { background: var(--verde-chiaro); color: var(--verde-scuro); font-weight: 600; font-size: 15px; padding: 6px 13px; border-radius: 999px; }
+  .apertura .foto img { border-radius: 18px; box-shadow: 0 10px 30px rgba(20, 35, 60, .15); }
+  @media (max-width: 820px) { .apertura .larga { grid-template-columns: 1fr; } .apertura { padding-top: 26px; } }
+
+  /* Sezioni */
+  section { padding: 34px 0; }
+  h2 { font-size: clamp(25px, 4vw, 32px); margin: 0 0 18px; }
+  .griglia { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+  .scheda { background: var(--scheda); border: 1px solid var(--bordo); border-radius: 16px; padding: 18px 20px; }
+  .scheda h3 { margin: 0 0 6px; font-size: 18px; }
+  .scheda p { margin: 0; color: var(--tenue); font-size: 16px; }
+  .icona { font-size: 26px; display: block; margin-bottom: 6px; }
+
+  /* Inverter compatibili */
+  .marche { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+  .marche li { background: var(--scheda); border: 1px solid var(--bordo); border-radius: 14px; padding: 13px 16px; display: flex; justify-content: space-between; gap: 12px; align-items: center; }
+  .stato { font-size: 13px; font-weight: 700; padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+  .stato.ok { background: var(--verde-chiaro); color: var(--verde-scuro); }
+  .stato.prova { background: #fff4d9; color: #8a5a00; }
+  .nota { font-size: 15px; color: var(--tenue); margin-top: 12px; }
+
+  /* Foto dell'app */
+  .foto-app { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
+  .foto-app figure { margin: 0; background: var(--scheda); border: 1px solid var(--bordo); border-radius: 16px; overflow: hidden; }
+  .foto-app img { width: 100%; height: 220px; object-fit: cover; object-position: top; }
+  .foto-app figcaption { padding: 10px 14px; font-size: 15px; color: var(--tenue); }
+
+  /* Installazione */
+  .passi { counter-reset: passo; list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+  .passi li { counter-increment: passo; background: var(--scheda); border: 1px solid var(--bordo); border-radius: 14px; padding: 14px 16px 14px 58px; position: relative; }
+  .passi li::before {
+    content: counter(passo); position: absolute; left: 14px; top: 13px;
+    width: 30px; height: 30px; border-radius: 50%; background: var(--verde); color: #fff;
+    font-weight: 700; display: grid; place-items: center;
+  }
+  .avviso { background: #fff8e6; border: 1px solid #f3dca0; border-radius: 14px; padding: 14px 16px; margin-top: 14px; font-size: 16px; }
+
+  /* Gruppo */
+  .gruppo { background: var(--scheda); border-top: 1px solid var(--bordo); border-bottom: 1px solid var(--bordo); }
+  .gruppo img { border-radius: 14px; margin-bottom: 18px; }
+  .gruppo .larga { text-align: center; }
+  .gruppo p { max-width: 640px; margin: 0 auto 20px; color: var(--tenue); }
+
+  footer { padding: 26px 0 40px; font-size: 14px; color: var(--tenue); }
+  footer p { margin: 0 0 8px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="larga">
+    <img src="icona.png" alt="">
+    <b>Local Data Inverter</b>
+    <nav>
+      <a href="#funzioni">Cosa fa</a>
+      <a href="#compatibili">Compatibili</a>
+      <a href="#installa">Installazione</a>
+      <a href="#gruppo">Assistenza</a>
+    </nav>
+  </div>
+</header>
+
+<div class="apertura">
+  <div class="larga">
+    <div>
+      <h1>Il tuo fotovoltaico, <span>sotto controllo</span></h1>
+      <p class="sotto">App Android gratuita che legge l'inverter direttamente dalla chiavetta Wi-Fi Solarman, in casa. Niente cloud, niente account.</p>
+      <!-- Il link scarica sempre l'ultima versione: nella release l'APK deve chiamarsi sempre LocalDataInverter.apk -->
+      <a class="tasto" href="https://github.com/hekoo89/local-data-inverter/releases/latest/download/LocalDataInverter.apk">⬇ Scarica l'app</a>
+      <p class="dopo-tasto">Versione 1.15 · Android 7 o più recente · circa 5 MB · <a href="#installa">come si installa</a></p>
+      <div class="pregi">
+        <span>☁️ Senza cloud</span>
+        <span>🏠 Dati in locale</span>
+        <span>🔒 Solo lettura</span>
+        <span>🎁 Gratuita</span>
+      </div>
+    </div>
+    <div class="foto"><img src="foto/presentazione.jpg" alt="L'app Local Data Inverter su un tablet: produzione, rete, batteria, consumo, meteo e mappa delle nuvole"></div>
+  </div>
+</div>
+
+<section id="funzioni">
+  <div class="larga">
+    <h2>Cosa fa</h2>
+    <div class="griglia">
+      <div class="scheda"><span class="icona">⚡</span><h3>Flussi in tempo reale</h3><p>Pannelli, batteria, rete e casa in un colpo d'occhio, aggiornati ogni pochi secondi. Con il tasto LIVE, un minuto di dati ogni secondo.</p></div>
+      <div class="scheda"><span class="icona">🌤️</span><h3>Meteo e previsione</h3><p>Quanto produrrai oggi e domani, con la mappa di nuvole e pioggia.</p></div>
+      <div class="scheda"><span class="icona">🚦</span><h3>Semaforo degli elettrodomestici</h3><p>Ti dice quando accendere lavatrice, forno o lavastoviglie per usare il sole e non la rete.</p></div>
+      <div class="scheda"><span class="icona">💶</span><h3>Bolletta e risparmio</h3><p>Stima della spesa e di quanto risparmi, con bolletta mensile o bimestrale.</p></div>
+      <div class="scheda"><span class="icona">📈</span><h3>Grafici e storico</h3><p>Dati di oggi, grafici, storico, eventi e allarmi dell'inverter.</p></div>
+      <div class="scheda"><span class="icona">📱</span><h3>Tablet a parete</h3><p>Modalità schermo sempre acceso, tema chiaro o scuro, grafica Nuova o Classica.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="larga">
+    <h2>Com'è fatta</h2>
+    <div class="foto-app">
+      <figure><img src="foto/schema.jpg" alt="Schema dei flussi"><figcaption>Lo schema con l'orologio e gli elettrodomestici scelti</figcaption></figure>
+      <figure><img src="foto/semaforo.jpg" alt="Semaforo degli elettrodomestici su telefono"><figcaption>Il semaforo degli elettrodomestici sul telefono</figcaption></figure>
+      <figure><img src="foto/costi.jpg" alt="Costi e valori tipici"><figcaption>Costi dell'energia con i valori tipici</figcaption></figure>
+      <figure><img src="foto/scelta-inverter.jpg" alt="Scelta dell'inverter al primo avvio"><figcaption>Al primo avvio scegli il tuo inverter</figcaption></figure>
+    </div>
+    <p class="nota">Le foto sono in modalità demo: dati di esempio, non reali.</p>
+  </div>
+</section>
+
+<section id="compatibili">
+  <div class="larga">
+    <h2>Inverter compatibili</h2>
+    <ul class="marche">
+      <li>Deye monofase (SUN-…-SG04LP1) con chiavetta Solarman <span class="stato ok">provato</span></li>
+      <li>Afore monofase (AFX-SLP) con chiavetta Solarman <span class="stato ok">provato</span></li>
+      <li>Deye trifase (SG04LP3) <span class="stato prova">da verificare</span></li>
+      <li>Due Deye in parallelo (master e slave), con la somma dell'impianto <span class="stato prova">da verificare</span></li>
+      <li>Solis ibrido monofase con chiavetta S2-WL-ST <span class="stato prova">da verificare</span></li>
+    </ul>
+    <p class="nota">"Da verificare" vuol dire che servono i vostri confronti con l'app del produttore: se un valore non torna, scrivetecelo nel gruppo.
+      Il vostro inverter non c'è? Nell'app scegliete "Altro / non in elenco": la scheda "Esplora la rete" prepara un file con cui si può aggiungere il vostro modello.</p>
+  </div>
+</section>
+
+<section>
+  <div class="larga">
+    <h2>Sicura per il tuo impianto</h2>
+    <div class="griglia">
+      <div class="scheda"><span class="icona">🔒</span><h3>Solo lettura</h3><p>L'app legge i dati e basta: non manda nessun comando all'inverter e non cambia nessuna impostazione.</p></div>
+      <div class="scheda"><span class="icona">🐢</span><h3>Delicata con la chiavetta</h3><p>Letture distanziate; se la chiavetta non risponde l'app rallenta da sola e riprende appena risponde.</p></div>
+      <div class="scheda"><span class="icona">🏠</span><h3>I dati restano a casa</h3><p>I dati dell'inverter restano sul telefono. Internet serve solo per meteo (Open-Meteo), nuvole (RainViewer, EUMETSAT) e mappe (OpenStreetMap).</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="installa">
+  <div class="larga">
+    <h2>Come si installa</h2>
+    <ol class="passi">
+      <li>Tocca <b>Scarica l'app</b>. Se il link si apre dentro Facebook e non scarica niente, tocca i tre puntini in alto e scegli <b>Apri in Chrome</b>.</li>
+      <li>Chrome può avvisare che "questo tipo di file può essere dannoso": lo dice per tutte le app scaricate fuori dal Play Store. Tocca <b>Scarica comunque</b>.</li>
+      <li>Apri il file scaricato. Android chiede il permesso di installare app da Chrome: <b>consenti</b>, poi torna indietro e premi <b>Installa</b>.</li>
+      <li>Se compare Play Protect, tocca <b>Installa comunque</b>.</li>
+      <li>Al primo avvio scegli il tuo inverter e premi <b>Cerca il logger in rete</b>: il telefono deve essere sul Wi-Fi di casa.</li>
+    </ol>
+    <div class="avviso"><b>Hai già una versione vecchia?</b> Installa sopra, <b>senza disinstallare</b>: così restano tutte le impostazioni. Se Android segnala una firma incompatibile, fermati e scrivici prima di disinstallare.</div>
+    <p style="margin-top:22px"><a class="tasto" href="https://github.com/hekoo89/local-data-inverter/releases/latest/download/LocalDataInverter.apk">⬇ Scarica l'app</a></p>
+  </div>
+</section>
+
+<section>
+  <div class="larga">
+    <h2>Guide</h2>
+    <div class="griglia">
+      <a class="scheda" href="guide/novita.txt" style="text-decoration:none"><span class="icona">🆕</span><h3>Novità e primo avvio</h3><p>La guida completa della versione 1.15.</p></a>
+      <a class="scheda" href="guide/funzioni.txt" style="text-decoration:none"><span class="icona">📋</span><h3>Tutte le funzioni</h3><p>L'elenco completo di quello che fa l'app.</p></a>
+      <a class="scheda" href="guide/bolletta.txt" style="text-decoration:none"><span class="icona">💶</span><h3>Guida bolletta</h3><p>Dove trovare ogni voce in bolletta per avere costi giusti.</p></a>
+      <a class="scheda" href="guide/elettrodomestici.txt" style="text-decoration:none"><span class="icona">🚦</span><h3>Guida elettrodomestici</h3><p>Come leggere il semaforo.</p></a>
+    </div>
+  </div>
+</section>
+
+<section class="gruppo" id="gruppo">
+  <div class="larga">
+    <img src="foto/copertina-gruppo.jpg" alt="Gruppo Facebook Deye & Solarman Italia · Local Data Inverter">
+    <h2>Assistenza, novità e consigli</h2>
+    <p>Nel gruppo Facebook trovi le nuove versioni, l'aiuto per configurare l'app e i consigli di chi la usa già. Se qualcosa non va, manda uno screenshot, la versione dell'app (in fondo alle impostazioni) e il modello di inverter e telefono.</p>
+    <a class="tasto" href="https://www.facebook.com/groups/1475986104475886">👥 Entra nel gruppo</a>
+  </div>
+</section>
+
+<footer>
+  <div class="larga">
+    <p>Local Data Inverter è un progetto indipendente e gratuito, non ufficiale. Deye, Afore, Solis e Solarman sono marchi dei rispettivi proprietari, citati solo per indicare la compatibilità.</p>
+    <p>L'app non raccoglie dati personali e non ha server propri.</p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+LOCAL DATA INVERTER — VERSIONE 1.15 (guida completa)
+29 ottobre 2026
+
+L'app legge l'inverter direttamente dalla chiavetta Wi-Fi, senza cloud e
+senza account. Funziona solo quando il telefono o il tablet è collegato al
+Wi-Fi di CASA. È un'app diversa dalla vecchia "Deye Monitor".
+
+INVERTER COMPATIBILI
+- Deye monofase (SUN-…-SG04LP1)                      provato
+- Afore monofase (AFX-SLP)                            provato
+- Deye trifase (SG04LP3)                              da verificare
+- Solis ibrido monofase (chiavetta S2-WL-ST)          da verificare
+"Da verificare" vuol dire: la mappa dei dati viene da prove di altri e da
+pochi tester. Confrontate i valori con l'app del produttore e segnalatemi le
+differenze, con la Diagnostica.
+
+COSA CAMBIA NELLA 1.15 (rispetto alla 1.14)
+- Nuovi inverter: Deye trifase e Solis ibrido monofase. Il Solis si collega in
+  un altro modo (Modbus sulla porta 502, senza seriale del logger) e si legge
+  ogni 60 secondi, per non affaticare la chiavetta.
+- Due inverter in parallelo (master e slave), ognuno con la sua chiavetta:
+  nelle impostazioni "Ho due inverter in parallelo". L'app legge tutti e due e
+  mostra la somma dell'impianto; "Prova collegamento" controlla che il primo
+  sia il master e il secondo lo slave. Sullo schema compare "×2".
+- Inverter non in elenco: nella scelta iniziale c'è "Altro / non in elenco".
+  Porta alla nuova scheda "Esplora la rete", che cerca nella rete di casa i
+  dispositivi con porte aperte e prova come rispondono (sola lettura, circa
+  un minuto). Il file da mandarmi non contiene IP, MAC, nomi di rete né
+  seriali. Con questo file e la Diagnostica si può aggiungere un nuovo modello.
+- Diagnostica: con il Solis usa un solo collegamento per tutta la lettura (la
+  chiavetta S2-WL-ST rifiutava le connessioni dopo un po'). Avviso chiaro sul
+  file: non ci sono IP, MAC né seriale del logger, ma nei valori c'è il numero
+  di serie dell'inverter: mandatelo solo a chi vi aiuta.
+- Schema: sull'inverter c'è la sigla della marca (DEYE, AFORE, SOLIS); con un
+  inverter trifase le potenze delle tre fasi compaiono sotto rete e consumo.
+- Telefoni stretti: le scritte del semaforo ("Con batteria", "Domani 12:45")
+  vanno a capo dentro il tasto; sotto i 480 px i tasti sono su due colonne.
+- Dati che mancano: compare "—" invece di "NaN"; i valori lunghi vanno a capo
+  dentro la scheda.
+- Se il salvataggio delle impostazioni non riesce, il motivo compare in una
+  finestra e la pagina ti porta sul campo da correggere, con il bordo rosso.
+- Più delicata con le chiavette: solo letture, nessun secondo tentativo
+  immediato se una lettura fallisce; se il logger non risponde l'app rallenta
+  da sola (ogni 2 minuti, poi ogni 5) e riprende il ritmo normale appena
+  risponde. La Diagnostica con il Solis va piano, una richiesta ogni 1,5 s.
+- Licenze: elenco completo delle librerie e delle mappe usate, con i loro
+  testi; i nomi dei produttori sono citati solo per la compatibilità.
+- Tasto LIVE in alto a destra: per un minuto i dati si aggiornano ogni secondo
+  (Deye) o ogni 3 secondi (Afore), con il conto alla rovescia; poi l'app torna
+  da sola al ritmo normale. Con il Solis non c'è, per non bloccare la chiavetta.
+  L'orologio ora sta sotto la spia e l'ingranaggio.
+- Tempo minimo di aggiornamento per marca (Deye 5 s, Afore 10 s, Solis 60 s),
+  scritto sotto il campo nelle impostazioni.
+- Icona nuova: sole, tetto con i pannelli e batteria.
+
+Restano tutte le novità della 1.14: scelta della marca, potenza del contatore
+(accise giuste e avviso "Contatore" nel semaforo), bolletta mensile o
+bimestrale, pulsante "Valori tipici", orologio con data, elettrodomestici scelti
+in blu con "fino hh:mm".
+
+PRIMO AVVIO
+1. Scegli il tuo inverter. Se non c'è, scegli "Altro / non in elenco" (vedi
+   sotto).
+2. Si apre la pagina delle impostazioni. "Cerca il logger in rete": in circa
+   10 secondi compila da sola indirizzo IP e seriale del logger (con il Solis
+   il seriale non serve; con il Deye legge anche la capacità della batteria).
+   Se non lo trova, IP e seriale si vedono nell'app del produttore o
+   sull'etichetta della chiavetta (serve il seriale del LOGGER, non
+   dell'inverter). Il telefono deve essere sul Wi-Fi di casa.
+3. Due inverter in parallelo? Spunta "Ho due inverter in parallelo": sopra il
+   logger del master (quello col contatore), sotto quello dello slave.
+4. "Prova collegamento": deve comparire "Funziona!". Se funziona ma tutti i
+   valori restano a zero, la marca scelta è sbagliata.
+5. Località: scrivi il paese e tocca "Cerca" (serve per meteo e previsione).
+6. Potenza FV (kWp): numero dei pannelli × watt di targa ÷ 1000.
+7. Potenza massima dell'inverter (kW): è nel nome del modello (un 6K = 6).
+8. Capacità batteria (kWh): controlla il valore proposto.
+9. Costo dell'energia (facoltativo ma consigliato): vedi GUIDA-BOLLETTA.
+10. Premi Salva.
+
+INVERTER NON IN ELENCO
+Scegli "Altro / non in elenco", poi nelle impostazioni "Vai a «Esplora la
+rete»" e premi "Esplora la rete". Quando ha finito premi "Condividi" e
+mandami il file. Se trovi IP e seriale del logger, fai anche la Diagnostica e
+mandami anche quel file. Con l'inverter in elenco "Altro" non legge dati:
+serve solo a raccogliere le informazioni.
+
+COSA FA L'APP (in breve; l'elenco completo è nel file FUNZIONI)
+- Schema dei flussi in tempo reale: pannelli, rete, batteria e casa.
+- Dati di oggi, grafici, storico, eventi e allarmi.
+- Meteo e previsione FV, mappa di nuvole e pioggia.
+- Semaforo degli elettrodomestici (guida nel file GUIDA-ELETTRODOMESTICI).
+- Spesa, risparmio e bolletta stimata (guida nel file GUIDA-BOLLETTA).
+- Modalità tablet a parete, tema chiaro o scuro, grafica Nuova o Classica.
+- Diagnostica ed Esplora la rete per l'assistenza.
+
+COSE DA SAPERE
+- I kWh degli elettrodomestici sono stime (potenza media × ore).
+- Se chiudi l'app, impostazioni, tariffa e dati già salvati restano. Grafici e
+  allarmi del periodo di chiusura non si ricostruiscono.
+- Afore, Solis e Deye trifase: gli allarmi dell'inverter non sono ancora letti.
+- Deye trifase, Solis e parallelo master/slave sono "da verificare":
+  confrontate i valori con l'app del produttore.
+- La lettura della porta GEN non è ancora verificata su un impianto vero.
+
+INSTALLAZIONE
+Installa l'APK come aggiornamento, senza disinstallare la vecchia versione,
+per conservare le impostazioni. Se Android segnala una firma incompatibile,
+fermati prima di disinstallare: perderesti i dati locali dell'app.
+Android può chiedere di consentire l'installazione da questa fonte: consenti.
+Se compare "Play Protect" o "app sconosciuta": "Installa comunque".
+
+SE QUALCOSA NON VA
+Manda uno screenshot dell'errore e indica la versione (la scritta "Local Data
+Inverter v..." si vede nelle impostazioni). Per un inverter che non si legge
+bene, fai la Diagnostica e manda il file, solo a me.

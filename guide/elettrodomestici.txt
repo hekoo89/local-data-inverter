@@ -1,0 +1,165 @@
+LOCAL DATA INVERTER - GUIDA AL SEMAFORO DEGLI ELETTRODOMESTICI
+(valida per la versione 1.15)
+
+Il semaforo ti dice, per ogni elettrodomestico, se CONVIENE accenderlo adesso,
+cioè se a pagarlo è il sole (o la batteria) e non la rete. Non accende e non
+spegne niente: ti consiglia soltanto. Decidi sempre tu.
+
+
+1. DOVE LO TROVI
+----------------
+- Nella prima schermata: un quadratino per ogni elettrodomestico, con l'icona,
+  il nome, i kWh del ciclo e una scritta ("Ora", "Con batteria"...).
+- Sul tablet in orizzontale sta nella barra in alto, sempre visibile.
+- Sul telefono (e sul tablet in verticale) sta nella scheda del semaforo.
+  Sui telefoni stretti le scritte vanno a capo dentro il quadratino e, sotto
+  i 480 px di larghezza, i quadratini sono su due colonne.
+
+
+2. I COLORI
+-----------
+VERDE - "Ora"
+  Lo paga il sole (direttamente o passando dalla batteria). Accendilo.
+
+GIALLO - "Con batteria"
+  Il ciclo si può fare usando la batteria, senza prendere corrente dalla rete.
+  Toccando il quadratino leggi anche l'effetto sulle ore dopo: o la batteria
+  arriverà a fine giornata con qualche kWh in meno, oppure è previsto un piccolo
+  prelievo dalla rete più tardi.
+
+ROSSO - "Rete ora" / "Domani 11:00" / "No"
+  Se lo accendi adesso, durante il ciclo prenderebbe corrente dalla rete.
+  - "Rete ora": oggi c'è ancora un orario buono; toccando il quadratino leggi
+    "Meglio dalle 13:30".
+  - "Domani 11:00": oggi non c'è abbastanza sole, domani sì, da quell'ora.
+  - "No": né oggi né domani c'è abbastanza sole.
+
+ROSSO - "Limite kW"
+  L'elettrodomestico chiede più potenza di quella che l'inverter può dare.
+
+ROSSO - "Contatore"  (novità 1.14)
+  La batteria non basta per tutto il ciclo e la corrente che servirebbe dalla
+  rete supera la potenza del tuo contatore (con un margine del 10%): rischi che
+  il contatore stacchi. Serve aver scritto la potenza del contatore nelle
+  impostazioni.
+
+GRIGIO - "—"
+  Il semaforo non ha i dati per decidere. Sotto i quadratini c'è scritto il
+  motivo:
+  - mancano potenza dei pannelli o capacità della batteria nelle impostazioni;
+  - manca la località (serve per la previsione del sole);
+  - manca la previsione meteo (internet assente o servizio che non risponde);
+  - l'app aspetta ancora i dati dell'inverter.
+
+BLU pieno - "fino 15:52"
+  Hai detto all'app che lo stai accendendo (vedi punto 4). Vale fino all'ora
+  indicata, cioè fino a fine ciclo.
+
+
+3. COME DECIDE (in parole semplici)
+-----------------------------------
+L'app guarda le prossime ore a passi di 15 minuti e si chiede due volte "come
+va la giornata?": una SENZA l'elettrodomestico e una CON, accendendolo a orari
+diversi. Usa questi dati:
+  - il sole PREVISTO per il resto della giornata e per domani (previsione meteo
+    sul piano dei tuoi pannelli, tarata sulla produzione reale dell'impianto);
+  - quanto sta producendo adesso l'impianto e quanto consuma casa;
+  - la carica della batteria, la sua capacità e la riserva che non vuoi
+    consumare (impostazioni).
+
+Poi confronta le due giornate: la differenza di energia presa dalla rete, più
+quella "prestata" dalla batteria e non restituita, è il COSTO del ciclo.
+Se il costo è quasi zero, il verde. Se la rete non serve durante il ciclo ma
+la batteria ne esce più scarica, il giallo. Se durante il ciclo si prenderebbe
+corrente dalla rete, il rosso, e l'app cerca l'orario migliore.
+
+Alcune regole che contano:
+  - Si tollera fino al 10% di energia dalla rete (almeno 0,1 kWh) senza passare
+    al rosso: sono le piccole differenze che non fanno la bolletta.
+  - Se la batteria è piena e l'impianto non può immettere in rete, il sole in
+    più andrebbe perso: usarlo è gratis, e l'app lo sa.
+  - La batteria ha perdite (circa 10% tra carica e scarica): l'app le conta.
+  - Con il nuvolo in arrivo la batteria non si ricarica, e i colori lo
+    mostrano. Con una giornata di sole in arrivo si può anche usare la
+    batteria adesso, perché si ricaricherà.
+  - Un colore cambia solo se resta tale per 3 minuti: così non lampeggia ogni
+    volta che passa una nuvola.
+
+
+4. COME SI USA
+--------------
+a) Guarda i colori e scegli quando accendere.
+b) Quando accendi davvero un elettrodomestico, TOCCA il suo quadratino:
+   diventa BLU, con "fino hh:mm". L'app, da quel momento, considera acceso
+   quel consumo e ricalcola i colori degli altri: ne puoi scegliere più di uno.
+c) Con due o più blu, l'app avvisa se ci stanno tutti insieme (sole, batteria,
+   limite dell'inverter e contatore).
+d) A fine ciclo il quadratino si spegne da solo. Per toglierlo prima, toccalo
+   di nuovo.
+
+Perché serve toccare? L'inverter vede solo il consumo totale di casa, non sa
+quale macchina è accesa. Dicendoglielo, il consumo non viene contato due volte.
+
+
+5. LE CIFRE DI OGNI ELETTRODOMESTICO
+------------------------------------
+Per ogni elettrodomestico l'app usa due numeri: la POTENZA MEDIA durante il
+ciclo (non quella di targa) e la DURATA in ore. Il consumo del ciclo è
+potenza media x ore. I picchi brevi (la resistenza della lavatrice) li assorbe
+la batteria, quindi conta la media.
+
+Valori di partenza (indicativi, sono solo un punto di partenza):
+  Lavatrice        800 W   x 2 ore
+  Lavastoviglie    700 W   x 2,5 ore
+  Asciugatrice     900 W   x 2 ore
+  Forno           2000 W   x 1 ora
+  Condizionatore   900 W   x 3 ore
+
+Adattali ai tuoi: nelle impostazioni puoi cambiare potenza media e ore di ogni
+elettrodomestico e aggiungerne altri a mano (compaiono con l'icona della spina).
+Come ricavare la potenza media: leggi sull'etichetta o sul libretto il consumo
+di un ciclo in kWh e dividilo per la durata in ore. Esempio: un ciclo da 1,6 kWh
+in 2 ore = 800 W. I tuoi valori restano salvati anche se aggiorni l'app.
+
+
+6. COSA CONTROLLARE NELLE IMPOSTAZIONI
+--------------------------------------
+Perché il semaforo sia affidabile servono dati giusti:
+  - capacità della batteria e riserva (la carica sotto cui non vuoi scendere);
+  - potenza dei pannelli (kWp);
+  - potenza massima dell'inverter in kW (per il rosso "Limite kW");
+  - potenza del contatore in kW (per il rosso "Contatore");
+  - posizione dell'impianto, per la previsione del sole.
+
+
+7. DOMANDE FREQUENTI
+--------------------
+"C'è il sole ma il quadratino è giallo."
+  Il sole che c'è adesso non basta da solo per tutto il ciclo: serve anche la
+  batteria. Tocca il quadratino per leggere il motivo.
+
+"Ho toccato un elettrodomestico e gli altri sono diventati gialli o rossi."
+  È normale: quello scelto consuma, e rimane meno per gli altri. Se la
+  produzione è alta e la batteria è piena, il margine resta; se è scarsa, no.
+
+"Dice 'Domani' ma oggi c'è sole."
+  Il sole che resta per oggi non basta per il ciclo intero. Se è tardi, il
+  pomeriggio ha poco da dare.
+
+"Il quadratino è grigio."
+  Leggi la riga sotto i quadratini: dice cosa manca (dati nelle impostazioni,
+  località, previsione meteo o dati dell'inverter).
+
+"Il tasto 'Contatore' non compare mai."
+  Controlla di aver scritto la potenza del contatore nelle impostazioni.
+
+"Le cifre non tornano con quello che consuma davvero la mia macchina."
+  Correggi potenza media e ore: sono stime e il tuo modello può consumare in
+  modo diverso. Puoi anche mandarmi marca e modello.
+
+
+8. UN AVVISO ONESTO
+-------------------
+Il semaforo lavora su STIME: la previsione meteo può sbagliare e i consumi di
+casa cambiano. Serve a scegliere meglio, non a garantire il costo di un ciclo.
+In caso di dubbio, se la batteria è bassa e il tempo sta cambiando, aspetta.

@@ -1,0 +1,174 @@
+LOCAL DATA INVERTER 1.15 — TUTTE LE FUNZIONALITÀ
+29 ottobre 2026
+
+Le voci segnate [NUOVO 1.15] sono le novità rispetto alla 1.14.
+
+L'app legge l'inverter direttamente dalla chiavetta Wi-Fi, senza cloud e
+senza account. Funziona solo con il telefono o il tablet sul Wi-Fi di CASA.
+Niente dati mandati su internet: internet serve solo per meteo e mappa.
+
+
+1. INVERTER E COLLEGAMENTO
+--------------------------
+- Marche: Deye monofase (SUN-…-SG04LP1) e Afore monofase (AFX-SLP), provati.
+- [NUOVO 1.15] Deye trifase (SG04LP3) e Solis ibrido monofase (chiavetta
+  S2-WL-ST), da verificare: confrontate i valori con l'app del produttore.
+- [NUOVO 1.15] Due inverter in parallelo (master e slave), ognuno con la sua
+  chiavetta: l'app li legge tutti e due e mostra la somma dell'impianto.
+  "Prova collegamento" controlla che il primo sia il master.
+- [NUOVO 1.15] "Altro / non in elenco": per chi ha un inverter che l'app non
+  conosce ancora; porta a "Esplora la rete" e alla Diagnostica.
+- Al primo avvio l'app chiede "Che inverter hai?"; si cambia dopo nelle
+  impostazioni ("Marca e tipo di inverter").
+- Lettura ogni 5 secondi con il Deye, 30 con l'Afore, [NUOVO 1.15] 60 con il
+  Solis (per non affaticare la chiavetta).
+- [NUOVO 1.15] Tempo minimo di aggiornamento: 5 s Deye, 10 s Afore, 60 s
+  Solis; un numero più basso viene alzato al minimo. Con due inverter vale per
+  tutti e due: a ogni giro legge il master e subito dopo lo slave.
+- [NUOVO 1.15] Rispetto per la chiavetta: l'app fa SOLO letture, mai comandi.
+  Se una lettura non riesce non la ripete subito ma aspetta il giro dopo; dopo
+  3 errori di fila legge ogni 2 minuti, dopo altri 3 ogni 5 minuti, e torna al
+  ritmo normale appena il logger risponde (o quando salvi le impostazioni).
+- "Cerca il logger in rete": trova da solo IP e seriale della chiavetta in
+  circa 10 secondi; con il Deye legge anche la capacità della batteria.
+  [NUOVO 1.15] Con il Solis il seriale non serve.
+- "Prova collegamento": dice se l'app parla con l'inverter. Se funziona ma i
+  valori sono tutti a zero, avvisa che la marca scelta è probabilmente
+  sbagliata.
+- [NUOVO 1.15] Se il salvataggio non riesce, il motivo compare in una finestra
+  e la pagina ti porta sul campo da correggere, con il bordo rosso.
+- Ponte sul PC (facoltativo): se acceso, l'app ne usa lo storico dei giorni
+  passati e il registro eventi.
+
+
+2. SCHERMATA PRINCIPALE
+-----------------------
+- Schema dei flussi in tempo reale: pannelli (con le due stringhe), rete,
+  batteria (percentuale, carica o scarica) e casa, con le frecce che mostrano
+  il verso dell'energia.
+- Sull'inverter dello schema c'è la marca scelta: DEYE, AFORE,
+  [NUOVO 1.15] SOLIS, con "×2" se gli inverter sono due.
+- [NUOVO 1.15] Con un inverter trifase, sotto rete e consumo compaiono le
+  potenze delle tre fasi (L1 · L2 · L3), rimpicciolite se non ci stanno.
+- Temperature dell'inverter (se la marca le fornisce).
+- Orologio con data in alto a destra, [NUOVO 1.15] sotto la spia di stato e
+  l'ingranaggio.
+- [NUOVO 1.15] Tasto LIVE (sopra l'ingranaggio): per un minuto i dati si
+  aggiornano ogni secondo con il Deye, ogni 3 secondi con l'Afore (il doppio
+  con due inverter in parallelo). Il tasto diventa rosso con il conto alla
+  rovescia; toccalo di nuovo per fermarlo. Poi torna da solo al ritmo normale.
+  Con il Solis non c'è: la sua chiavetta non regge letture così fitte.
+- Spia di stato: OK, avviso o guasto, con l'elenco degli allarmi attivi.
+- Grafica Nuova (a schede) o Classica, a scelta. Tema chiaro, scuro o
+  automatico.
+- [NUOVO 1.15] Icona nuova dell'app.
+
+
+3. DATI E GRAFICI
+-----------------
+- Dati di oggi: produzione FV, consumo della casa, prelievo e immissione in
+  rete, carica e scarica della batteria, autoconsumo.
+- Dettagli: tensioni e correnti delle stringhe, batteria (tensione, corrente,
+  temperatura), rete (tensione e frequenza).
+- [NUOVO 1.15] Un dato che la marca non fornisce compare come "—"; i valori
+  lunghi vanno a capo dentro la scheda.
+- Tabella delle fasi L1/L2/L3: compare solo con un inverter trifase.
+- Grafico dell'andamento della giornata e storico.
+- Porta GEN (facoltativa): secondo impianto FV collegato alla porta GEN,
+  con i suoi kWp e i kWh stimati del giorno.
+
+
+4. METEO E PREVISIONE FV
+------------------------
+- Meteo attuale e dei prossimi giorni per la tua località.
+- Previsione dei kWh prodotti oggi, domani e dopodomani, con confronto tra
+  produzione stimata e reale.
+- La stima si tara da sola sul tuo impianto quando c'è sole.
+- Mappa di nuvole e pioggia.
+
+
+5. SEMAFORO DEGLI ELETTRODOMESTICI
+----------------------------------
+(Guida completa nel file GUIDA-ELETTRODOMESTICI-LocalDataInverter-v1.15.txt)
+- Per ogni elettrodomestico dice se conviene accenderlo: verde "Ora", giallo
+  "Con batteria", rosso "Rete ora" (con l'ora migliore), "Domani ..." o "No",
+  rosso "Limite kW" (inverter) o "Contatore" (rischio che il contatore
+  stacchi).
+- Tiene conto del sole PREVISTO per il resto della giornata e per domani,
+  della batteria e dei consumi medi di casa.
+- Tocca un elettrodomestico per dire che lo accendi: diventa BLU con
+  "fino hh:mm" e gli altri tasti tengono conto del suo consumo.
+- [NUOVO 1.15] Sui telefoni stretti le scritte vanno a capo dentro il tasto;
+  sotto i 480 px i tasti sono su due colonne.
+- Potenza media, ore e kWh si correggono nelle impostazioni; si possono
+  aggiungere elettrodomestici a mano.
+
+
+6. SPESA, RISPARMIO E BOLLETTA
+------------------------------
+(Guida passo passo nel file GUIDA-BOLLETTA-LocalDataInverter-v1.15.txt)
+- Speso e risparmiato oggi e nel mese; in alto le caselle "Bolletta stimata"
+  e "Risparmio mese".
+- Tariffa: prezzo energia (obbligatorio), IVA, rete e oneri, accise con
+  esenzione, quote fisse, canone RAI.
+- Potenza del contatore: oltre 3 kW le accise si contano su tutti i kWh.
+- Bolletta ogni mese o ogni due mesi ("Bolletta stimata (2 mesi)").
+- Pulsante "Valori tipici": compila solo i campi vuoti con accise, esenzione,
+  IVA 10% e canone RAI.
+- Mese in corso: si può partire dai kWh dell'app del produttore per avere
+  subito il mese intero.
+
+
+7. AVVISI E ALLARMI
+-------------------
+- Elenco di eventi e allarmi dell'inverter (Deye monofase), con descrizione.
+- Avviso sonoro se la batteria scende sotto la soglia che scegli.
+- Avviso se il logger non risponde da oltre 2 minuti.
+
+
+8. DIAGNOSTICA
+--------------
+- Nelle impostazioni: legge l'inverter in SOLA LETTURA (non scrive nulla) e
+  prepara un file di testo con i valori grezzi; "Condividi" lo manda con
+  WhatsApp, mail o altro. Si può fermare a metà.
+- Nel file NON ci sono IP, MAC o seriale del logger. [NUOVO 1.15] Nei valori
+  però c'è il numero di serie dell'inverter: l'app lo ricorda, mandalo solo a
+  chi ti aiuta.
+- [NUOVO 1.15] Con il Solis la lettura usa un solo collegamento dall'inizio
+  alla fine (la chiavetta S2-WL-ST non regge tante connessioni di fila).
+- [NUOVO 1.15] Più veloce: legge solo il tipo di registri della marca scelta e
+  si ferma da sola dopo una serie di indirizzi vuoti.
+
+
+9. ESPLORA LA RETE [NUOVO 1.15]
+-------------------------------
+- Nelle impostazioni: cerca nella rete di casa i dispositivi con porte aperte
+  e prova come rispondono (Solarman, Modbus, pagine web e i protocolli dei
+  marchi più diffusi). Sola lettura, circa un minuto, niente da compilare.
+- Il file da condividere non contiene IP, MAC, nomi di rete né seriali.
+- Serve a far aggiungere all'app inverter e chiavette che ancora non conosce.
+
+
+10. TABLET A PARETE
+-------------------
+- Schermo sempre acceso e a tutto schermo.
+- Modo notte: luminosità abbassata dal tramonto all'alba.
+- Su tablet orizzontale il semaforo sta nella barra in alto, sempre visibile.
+
+
+11. LICENZE [NUOVO 1.15 completate]
+-----------------------------------
+- Nelle impostazioni, in fondo: tutte le librerie e le mappe dei registri
+  usate, con i testi delle licenze, e le fonti dei dati (Open-Meteo,
+  OpenStreetMap, EUMETSAT, RainViewer). I nomi dei produttori sono citati solo
+  per indicare la compatibilità: l'app non è affiliata a nessuno di loro.
+
+
+COSE DA SAPERE
+--------------
+- I kWh degli elettrodomestici sono stime (potenza media × ore).
+- Afore, Solis e Deye trifase: gli allarmi dell'inverter non sono ancora letti.
+- Deye trifase, Solis e parallelo master/slave sono da verificare.
+- La lettura della porta GEN non è ancora verificata su un impianto vero.
+- Installare sempre come aggiornamento (senza disinstallare) per conservare
+  le impostazioni.

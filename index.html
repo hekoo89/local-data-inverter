@@ -82,9 +82,14 @@
   .nota { font-size: 15px; color: var(--tenue); margin-top: 12px; }
 
   /* Foto dell'app */
-  .foto-app { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; }
-  .foto-app figure { margin: 0; background: var(--scheda); border: 1px solid var(--bordo); border-radius: 16px; overflow: hidden; }
-  .foto-app img { width: 100%; height: 220px; object-fit: cover; object-position: top; }
+  /* Schermate intere da telefono, mai tagliate: sul telefono scorrono di lato una alla volta */
+  .foto-app { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .foto-app figure { margin: 0; background: var(--scheda); border: 1px solid var(--bordo); border-radius: 22px; overflow: hidden; }
+  .foto-app img { width: 100%; height: auto; }
+  @media (max-width: 700px) {
+    .foto-app { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 78%; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; }
+    .foto-app figure { scroll-snap-align: start; }
+  }
   .foto-app figcaption { padding: 10px 14px; font-size: 15px; color: var(--tenue); }
 
   /* Installazione */
@@ -159,10 +164,9 @@
   <div class="larga">
     <h2>Com'è fatta</h2>
     <div class="foto-app">
-      <figure><img src="foto/schema.jpg" alt="Schema dei flussi"><figcaption>Lo schema con l'orologio e gli elettrodomestici scelti</figcaption></figure>
-      <figure><img src="foto/semaforo.jpg" alt="Semaforo degli elettrodomestici su telefono"><figcaption>Il semaforo degli elettrodomestici sul telefono</figcaption></figure>
-      <figure><img src="foto/costi.jpg" alt="Costi e valori tipici"><figcaption>Costi dell'energia con i valori tipici</figcaption></figure>
-      <figure><img src="foto/scelta-inverter.jpg" alt="Scelta dell'inverter al primo avvio"><figcaption>Al primo avvio scegli il tuo inverter</figcaption></figure>
+      <figure><img src="foto/app-schema.jpg" alt="Schermata principale con tasto LIVE, orologio e semaforo" loading="lazy"><figcaption>Tasto LIVE, orologio e semaforo degli elettrodomestici</figcaption></figure>
+      <figure><img src="foto/app-semaforo.jpg" alt="Schema dei flussi: pannelli, rete, batteria e casa" loading="lazy"><figcaption>Lo schema: pannelli, rete, batteria e casa</figcaption></figure>
+      <figure><img src="foto/app-meteo.jpg" alt="Meteo, previsione FV e mappa di nuvole e pioggia" loading="lazy"><figcaption>Meteo, previsione FV e mappa delle nuvole</figcaption></figure>
     </div>
     <p class="nota">Le foto sono in modalità demo: dati di esempio, non reali.</p>
   </div>

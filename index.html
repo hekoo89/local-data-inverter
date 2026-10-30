@@ -82,6 +82,13 @@
   .nota { font-size: 15px; color: var(--tenue); margin-top: 12px; }
 
   /* Foto dell'app */
+  /* Schermata del tablet a parete: grande, con una cornice scura che ricorda il tablet */
+  .tablet { margin: 0 0 30px; }
+  .tablet img { width: 100%; height: auto; border: 12px solid #1d2430; border-radius: 26px; box-shadow: 0 14px 34px rgba(20, 35, 60, .2); }
+  .tablet figcaption { margin-top: 12px; color: var(--tenue); font-size: 16px; }
+  @media (max-width: 640px) { .tablet img { border-width: 7px; border-radius: 16px; } }
+  .anche { font-size: 20px; margin: 0 0 14px; }
+  .foto-app { max-width: 860px; }
   /* Schermate intere da telefono, mai tagliate: sul telefono scorrono di lato una alla volta */
   .foto-app { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
   .foto-app figure { margin: 0; background: var(--scheda); border: 1px solid var(--bordo); border-radius: 22px; overflow: hidden; }
@@ -163,6 +170,11 @@
 <section>
   <div class="larga">
     <h2>Com'è fatta</h2>
+    <figure class="tablet">
+      <a href="foto/app-tablet.jpg"><img src="foto/app-tablet.jpg" alt="L'app su un tablet a parete: semaforo degli elettrodomestici, schema dei flussi, meteo e mappa delle nuvole in una sola schermata" loading="lazy"></a>
+      <figcaption><b>Sul tablet a parete</b>: tutto in una schermata, sempre accesa. Semaforo degli elettrodomestici, flussi in tempo reale, meteo con la previsione FV e mappa delle nuvole. Tocca la foto per ingrandirla.</figcaption>
+    </figure>
+    <h3 class="anche">Anche sul telefono</h3>
     <div class="foto-app">
       <figure><img src="foto/app-schema.jpg" alt="Schermata principale con tasto LIVE, orologio e semaforo" loading="lazy"><figcaption>Tasto LIVE, orologio e semaforo degli elettrodomestici</figcaption></figure>
       <figure><img src="foto/app-semaforo.jpg" alt="Schema dei flussi: pannelli, rete, batteria e casa" loading="lazy"><figcaption>Lo schema: pannelli, rete, batteria e casa</figcaption></figure>

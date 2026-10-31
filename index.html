@@ -115,6 +115,7 @@
   .gruppo .larga { text-align: center; }
   .gruppo p { max-width: 640px; margin: 0 auto 20px; color: var(--tenue); }
 
+  .scheda.condizioni p { margin: 0 0 10px; color: var(--testo); }
   footer { padding: 26px 0 40px; font-size: 14px; color: var(--tenue); }
   footer p { margin: 0 0 8px; }
 </style>
@@ -141,7 +142,7 @@
       <p class="sotto">App Android gratuita che legge l'inverter direttamente dalla chiavetta Wi-Fi Solarman, in casa. Niente cloud, niente account.</p>
       <!-- Il link scarica sempre l'ultima versione: nella release l'APK deve chiamarsi sempre LocalDataInverter.apk -->
       <a class="tasto" href="https://github.com/hekoo89/local-data-inverter/releases/latest/download/LocalDataInverter.apk">⬇ Scarica l'app</a>
-      <p class="dopo-tasto">Versione 1.15 · Android 7 o più recente · circa 5 MB · <a href="#installa">come si installa</a></p>
+      <p class="dopo-tasto">Versione 1.16 · Android 7 o più recente · circa 5 MB · <a href="#installa">come si installa</a></p>
       <div class="pregi">
         <span>☁️ Senza cloud</span>
         <span>🏠 Dati in locale</span>
@@ -229,11 +230,28 @@
   <div class="larga">
     <h2>Guide</h2>
     <div class="griglia">
-      <a class="scheda" href="guide/novita.txt" style="text-decoration:none"><span class="icona">🆕</span><h3>Novità e primo avvio</h3><p>La guida completa della versione 1.15.</p></a>
+      <a class="scheda" href="guide/novita.txt" style="text-decoration:none"><span class="icona">🆕</span><h3>Novità e primo avvio</h3><p>La guida completa della versione 1.15 (la 1.16 aggiunge le condizioni d'uso).</p></a>
       <a class="scheda" href="guide/funzioni.txt" style="text-decoration:none"><span class="icona">📋</span><h3>Tutte le funzioni</h3><p>L'elenco completo di quello che fa l'app.</p></a>
       <a class="scheda" href="guide/bolletta.txt" style="text-decoration:none"><span class="icona">💶</span><h3>Guida bolletta</h3><p>Dove trovare ogni voce in bolletta per avere costi giusti.</p></a>
       <a class="scheda" href="guide/elettrodomestici.txt" style="text-decoration:none"><span class="icona">🚦</span><h3>Guida elettrodomestici</h3><p>Come leggere il semaforo.</p></a>
     </div>
+  </div>
+</section>
+
+<!-- Stesso testo delle condizioni nell'app (amico-lavoro, index.html, template testo_condizioni): se cambia lì, va cambiato anche qui -->
+<section id="condizioni">
+  <div class="larga">
+    <h2>Condizioni d'uso</h2>
+    <div class="scheda condizioni">
+      <p><b>Local Data Inverter — Versione sperimentale gratuita</b> · condizioni versione 1.0</p>
+      <p>Copyright © 2026 hekoo89 (autore di Local Data Inverter). Tutti i diritti riservati sul software originale, fatti salvi i diritti dei titolari dei componenti di terze parti.</p>
+      <p>L'applicazione è distribuita gratuitamente per finalità di prova, valutazione tecnica e verifica della compatibilità con inverter fotovoltaici.</p>
+      <p>Non sono autorizzate la vendita, la rivendita, la redistribuzione, la modifica o lo sfruttamento commerciale del software originale senza il consenso scritto dell'autore, fatti salvi i diritti riconosciuti dalle licenze open source dei componenti di terze parti.</p>
+      <p>L'applicazione è sperimentale. I dati visualizzati potrebbero contenere errori e non devono essere utilizzati come unica fonte per decisioni tecniche, economiche o di sicurezza.</p>
+      <p>Il software è fornito senza garanzie, nei limiti consentiti dalla legge.</p>
+      <p>Le librerie open source e i servizi esterni mantengono le rispettive licenze e condizioni d'uso, consultabili nell'apposita sezione dell'app.</p>
+    </div>
+    <p class="nota">Al primo avvio l'app chiede di accettare queste condizioni. Le licenze dei componenti di terze parti (Capacitor, Leaflet, AndroidX, ha-solarman e altri) e le fonti dei dati sono nell'app, in Impostazioni → Licenze e fonti dei dati.</p>
   </div>
 </section>
 
@@ -249,7 +267,7 @@
 <footer>
   <div class="larga">
     <p>Local Data Inverter è un progetto indipendente e gratuito, non ufficiale. Deye, Afore, Solis e Solarman sono marchi dei rispettivi proprietari, citati solo per indicare la compatibilità.</p>
-    <p>L'app non raccoglie dati personali e non ha server propri.</p>
+    <p>L'app non raccoglie dati personali e non ha server propri. <a href="#condizioni">Condizioni d'uso</a></p>
     <p>Mappe © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a> · le licenze delle librerie usate sono nell'app, Impostazioni → Licenze.</p>
   </div>
 </footer>

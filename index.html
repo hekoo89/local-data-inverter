@@ -206,7 +206,7 @@
     <div class="griglia">
       <div class="scheda"><span class="icona">🔒</span><h3>Solo lettura</h3><p>L'app legge i dati e basta: non manda nessun comando all'inverter e non cambia nessuna impostazione.</p></div>
       <div class="scheda"><span class="icona">🐢</span><h3>Delicata con la chiavetta</h3><p>Letture distanziate; se la chiavetta non risponde l'app rallenta da sola e riprende appena risponde.</p></div>
-      <div class="scheda"><span class="icona">🏠</span><h3>I dati restano a casa</h3><p>I dati dell'inverter restano sul telefono. Internet serve solo per meteo (Open-Meteo), nuvole (RainViewer, EUMETSAT) e mappe (OpenStreetMap).</p></div>
+      <div class="scheda"><span class="icona">🏠</span><h3>I dati dell'inverter restano a casa</h3><p>L'app li legge dalla chiavetta nella rete di casa e li salva solo sul telefono: non vengono inviati all'autore. Internet serve solo per meteo e previsione (Open-Meteo) e per la mappa con nuvole e pioggia (OpenStreetMap, EUMETSAT, RainViewer). <a href="#privacy">Dettagli</a></p></div>
     </div>
   </div>
 </section>
@@ -234,6 +234,22 @@
       <a class="scheda" href="guide/funzioni.txt" style="text-decoration:none"><span class="icona">📋</span><h3>Tutte le funzioni</h3><p>L'elenco completo di quello che fa l'app.</p></a>
       <a class="scheda" href="guide/bolletta.txt" style="text-decoration:none"><span class="icona">💶</span><h3>Guida bolletta</h3><p>Dove trovare ogni voce in bolletta per avere costi giusti.</p></a>
       <a class="scheda" href="guide/elettrodomestici.txt" style="text-decoration:none"><span class="icona">🚦</span><h3>Guida elettrodomestici</h3><p>Come leggere il semaforo.</p></a>
+    </div>
+  </div>
+</section>
+
+<!-- Privacy: descrive cosa fa la v1.16 (verificato nel codice il 31/10/2026). Se l'app cambia servizi o dati inviati, aggiornare qui. -->
+<section id="privacy">
+  <div class="larga">
+    <h2>Privacy e servizi esterni</h2>
+    <div class="scheda condizioni">
+      <p><b>Cosa resta sul telefono.</b> Le letture dell'inverter (potenze, batteria, energia, allarmi), lo storico e le impostazioni (indirizzo IP e numero di serie della chiavetta, dati dell'impianto, tariffa, località) sono elaborati e salvati solo sul dispositivo. L'autore dell'app non ha server: questi dati non gli vengono inviati automaticamente.</p>
+      <p><b>Cosa viene trasmesso a servizi esterni.</b> Per alcune funzioni l'app si collega a servizi di terzi. Come per ogni collegamento a internet, ognuno di questi servizi riceve l'indirizzo IP del dispositivo e i dati tecnici della richiesta (per esempio il tipo di browser).</p>
+      <p>• <b>Open-Meteo</b> (meteo e previsione FV): il nome della località che cerchi nelle impostazioni; poi, per la previsione, le coordinate della località scelta, l'inclinazione e l'orientamento dei pannelli. Secondo le condizioni di Open-Meteo, i registri del servizio possono contenere le coordinate e vengono cancellati dopo 90 giorni.<br>
+      • <b>OpenStreetMap</b> (mappa), <b>EUMETSAT</b> (nuvole) e <b>RainViewer</b> (pioggia): le richieste delle immagini della zona mostrata sulla mappa, a livello di regione.</p>
+      <p>Ognuno di questi servizi tratta i dati secondo le proprie condizioni e informative, consultabili sui rispettivi siti.</p>
+      <p><b>Diagnostica ed Esplora la rete.</b> Sono file che si creano solo se li chiedi e che partono solo se li condividi tu, a chi scegli. La Diagnostica contiene la versione dell'app, la marca scelta, la data e i valori dei registri letti, tra cui il numero di serie dell'inverter; non contiene IP, MAC né numero di serie della chiavetta. Esplora la rete contiene le porte aperte dei dispositivi trovati in casa con gli indirizzi mascherati (resta solo l'ultimo numero); dalle risposte dei dispositivi l'app toglie automaticamente indirizzi, nomi di rete e numeri di serie che riconosce. Questi filtri automatici non garantiscono la rimozione di ogni informazione identificativa. Se mandi questi file all'autore per avere aiuto, lui li riceve: mandali solo a chi ti aiuta e non pubblicarli nei commenti.</p>
+      <p><b>Condizioni d'uso.</b> Dalla versione 1.16, per ricordare l'accettazione l'app salva sul dispositivo solo la versione delle condizioni accettate e la data.</p>
     </div>
   </div>
 </section>
@@ -267,7 +283,7 @@
 <footer>
   <div class="larga">
     <p>Local Data Inverter è un progetto indipendente e gratuito, non ufficiale. Deye, Afore, Solis e Solarman sono marchi dei rispettivi proprietari, citati solo per indicare la compatibilità.</p>
-    <p>L'app non raccoglie dati personali e non ha server propri. <a href="#condizioni">Condizioni d'uso</a></p>
+    <p>L'autore dell'app non ha server e non riceve automaticamente i dati degli utenti; meteo e mappe passano da servizi esterni. <a href="#privacy">Privacy e servizi esterni</a> · <a href="#condizioni">Condizioni d'uso</a></p>
     <p>Mappe © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a> · le licenze delle librerie usate sono nell'app, Impostazioni → Licenze.</p>
   </div>
 </footer>

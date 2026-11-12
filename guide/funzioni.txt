@@ -159,16 +159,33 @@ Niente dati mandati su internet: internet serve solo per meteo e mappa.
 11. LICENZE [NUOVO 1.15 completate]
 -----------------------------------
 - Nelle impostazioni, in fondo: tutte le librerie e le mappe dei registri
-  usate, con i testi delle licenze, e le fonti dei dati (Open-Meteo,
-  OpenStreetMap, EUMETSAT, RainViewer). I nomi dei produttori sono citati solo
+  usate, con i testi delle licenze, e le fonti dei dati (ICON-2I di Agenzia
+  ItaliaMeteo, EUMETSAT, radar della Protezione Civile, Natural Earth). I nomi dei produttori sono citati solo
   per indicare la compatibilità: l'app non è affiliata a nessuno di loro.
+
+
+12. DATI SALVATI SUL DISPOSITIVO [NUOVO 1.17]
+------------------------------------------
+- Un file al mese, impianto-AAAA-MM.csv: una riga al minuto con tutto quello
+  che l'app legge dall'inverter. Si scrive solo con l'app aperta; resta sul
+  telefono. Impostazioni → "Dati salvati sul dispositivo" → mese → "Esporta il
+  mese" (Condividi: Drive, Telegram...). I contatori giornalieri si tengono per
+  sempre.
+
+13. ARCO DEL SOLE [NUOVO 1.17]
+------------------------------
+- Nella scheda Meteo: alba a sinistra, tramonto a destra, il sole avanza con
+  l'ora; l'arco è più colorato dove si prevede più produzione. Si nasconde da
+  solo se la scheda non ha spazio.
 
 
 COSE DA SAPERE
 --------------
 - I kWh degli elettrodomestici sono stime (potenza media × ore).
-- Afore, Solis e Deye trifase: gli allarmi dell'inverter non sono ancora letti.
-- Deye trifase, Solis e parallelo master/slave sono da verificare.
+- Gli allarmi dell'inverter non sono mostrati: usa l'app ufficiale del tuo
+  inverter per guasti e allarmi.
+- Deye trifase, Sofar, Solis (rete, FV ed energie) e parallelo master/slave
+  sono da verificare.
 - La lettura della porta GEN non è ancora verificata su un impianto vero.
 - Installare sempre come aggiornamento (senza disinstallare) per conservare
   le impostazioni.

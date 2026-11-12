@@ -1,5 +1,5 @@
-LOCAL DATA INVERTER — VERSIONE 1.15 (guida completa)
-29 ottobre 2026
+LOCAL DATA INVERTER — VERSIONE 1.17 (guida completa)
+12 novembre 2026
 
 L'app legge l'inverter direttamente dalla chiavetta Wi-Fi, senza cloud e
 senza account. Funziona solo quando il telefono o il tablet è collegato al
@@ -8,11 +8,54 @@ Wi-Fi di CASA. È un'app diversa dalla vecchia "Deye Monitor".
 INVERTER COMPATIBILI
 - Deye monofase (SUN-…-SG04LP1)                      provato
 - Afore monofase (AFX-SLP)                            provato
+- ZCS Azzurro ibrido monofase (HP e non HP)           provato
 - Deye trifase (SG04LP3)                              da verificare
-- Solis ibrido monofase (chiavetta S2-WL-ST)          da verificare
+- Sofar da stringa e Sofar ibrido monofase (HYD-ES)   da verificare
+- Solis ibrido monofase (chiavetta S2-WL-ST)          in prova: batteria e
+  consumo confermati; rete, FV ed energie da confermare
 "Da verificare" vuol dire: la mappa dei dati viene da prove di altri e da
 pochi tester. Confrontate i valori con l'app del produttore e segnalatemi le
 differenze, con la Diagnostica.
+
+COSA CAMBIA NELLA 1.17 (rispetto alla 1.16)
+- Meteo nuovo, senza Open-Meteo: temperatura, nuvole, vento e icona per oggi,
+  domani e dopodomani arrivano dal modello ICON-2I dell'Agenzia ItaliaMeteo
+  (MeteoHub). L'irraggiamento sui pannelli per la previsione FV lo calcola
+  l'app. L'app si collega al servizio al massimo 6 volte al giorno. Se il
+  formato dei dati cambia compare "I dati meteo ICON-2I sono cambiati: serve
+  aggiornare l'app"; se il servizio non risponde, "Meteo momentaneamente non
+  disponibile, riprovo più tardi".
+- Cartina senza OpenStreetMap: la disegna l'app (dati Natural Earth); le nuvole
+  sono EUMETSAT e la pioggia è il radar della Protezione Civile. Niente più
+  OpenStreetMap né RainViewer. La località si imposta con "Usa posizione" o
+  con latitudine e longitudine (non c'è più la ricerca per nome).
+- Pannelli su più falde (da 1 a 4): per ogni falda potenza, inclinazione e
+  orientamento; la previsione le calcola una per una.
+- Arco del sole nella scheda Meteo: alba a sinistra, tramonto a destra, il
+  sole avanza con l'ora e l'arco è più colorato dove si prevede più
+  produzione. Sui tablet bassi si nasconde da solo se manca spazio.
+- Taratura della stima FV: un solo numero che si corregge da solo, giorno dopo
+  giorno, confrontando l'energia vera con quella prevista (solo ore complete,
+  mai con il taglio dell'inverter). È una stima, non una misura.
+- Dati salvati sul dispositivo: un file al mese, impianto-AAAA-MM.csv, con una
+  riga al minuto di tutto quello che l'app legge dall'inverter (produzione,
+  consumo, batteria, rete, contatori del giorno). Si scrive solo mentre l'app è
+  aperta; resta sul telefono; Impostazioni → "Dati salvati sul dispositivo" →
+  scegli il mese → "Esporta il mese" per mandarlo dove vuoi. I contatori
+  giornalieri si tengono per sempre.
+- Schermata a tre colonne (schema, meteo, mappa) anche sui tablet più piccoli
+  (da 800 px di larghezza); le scritte di stato del meteo sono nella scheda
+  "Aggiornamenti" in fondo. Grafica classica più pulita.
+- Solo lettura più sicura: oltre al programma, anche il componente che parla
+  con la rete rifiuta qualunque richiesta che non sia una lettura (funzioni
+  Modbus 03 e 04). L'app non abilita Modbus TCP, non scrive registri, non cambia
+  impostazioni e non manda comandi di configurazione, riavvio o aggiornamento.
+- Nuovi inverter: ZCS Azzurro ibrido monofase (HP e non HP, provati), Sofar da
+  stringa e Sofar ibrido (da verificare).
+- Allarmi: l'app non mostra più i codici di guasto e di avviso dell'inverter;
+  per guasti e allarmi usa l'app ufficiale del tuo inverter. Restano i due
+  avvisi dell'app (batteria sotto soglia, logger non raggiungibile).
+- Backup di Android: l'app non lo disattiva; vedi la pagina Privacy del sito.
 
 COSA CAMBIA NELLA 1.15 (rispetto alla 1.14)
 - Nuovi inverter: Deye trifase e Solis ibrido monofase. Il Solis si collega in
@@ -71,7 +114,8 @@ PRIMO AVVIO
    logger del master (quello col contatore), sotto quello dello slave.
 4. "Prova collegamento": deve comparire "Funziona!". Se funziona ma tutti i
    valori restano a zero, la marca scelta è sbagliata.
-5. Località: scrivi il paese e tocca "Cerca" (serve per meteo e previsione).
+5. Località: tocca "Usa posizione" (serve per meteo e previsione) oppure scrivi
+   latitudine e longitudine (da Google Maps tieni premuto sul tetto di casa).
 6. Potenza FV (kWp): numero dei pannelli × watt di targa ÷ 1000.
 7. Potenza massima dell'inverter (kW): è nel nome del modello (un 6K = 6).
 8. Capacità batteria (kWh): controlla il valore proposto.
@@ -87,8 +131,8 @@ serve solo a raccogliere le informazioni.
 
 COSA FA L'APP (in breve; l'elenco completo è nel file FUNZIONI)
 - Schema dei flussi in tempo reale: pannelli, rete, batteria e casa.
-- Dati di oggi, grafici, storico, eventi e allarmi.
-- Meteo e previsione FV, mappa di nuvole e pioggia.
+- Dati di oggi, grafici, storico e file mensile dei dati da esportare.
+- Meteo e previsione FV, arco del sole, mappa di nuvole e pioggia.
 - Semaforo degli elettrodomestici (guida nel file GUIDA-ELETTRODOMESTICI).
 - Spesa, risparmio e bolletta stimata (guida nel file GUIDA-BOLLETTA).
 - Modalità tablet a parete, tema chiaro o scuro, grafica Nuova o Classica.
@@ -98,9 +142,10 @@ COSE DA SAPERE
 - I kWh degli elettrodomestici sono stime (potenza media × ore).
 - Se chiudi l'app, impostazioni, tariffa e dati già salvati restano. Grafici e
   allarmi del periodo di chiusura non si ricostruiscono.
-- Afore, Solis e Deye trifase: gli allarmi dell'inverter non sono ancora letti.
-- Deye trifase, Solis e parallelo master/slave sono "da verificare":
-  confrontate i valori con l'app del produttore.
+- Gli allarmi dell'inverter non sono mostrati: per guasti e allarmi usa l'app
+  ufficiale del tuo inverter.
+- Deye trifase, Sofar, Solis (rete, FV ed energie) e parallelo master/slave
+  sono "da verificare": confrontate i valori con l'app del produttore.
 - La lettura della porta GEN non è ancora verificata su un impianto vero.
 
 INSTALLAZIONE

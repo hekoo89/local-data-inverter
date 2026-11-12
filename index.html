@@ -142,7 +142,7 @@
       <p class="sotto">App Android gratuita che legge l'inverter direttamente dalla chiavetta Wi-Fi Solarman, in casa. Niente cloud, niente account.</p>
       <!-- Il link scarica sempre l'ultima versione: nella release l'APK deve chiamarsi sempre LocalDataInverter.apk -->
       <a class="tasto" href="https://github.com/hekoo89/local-data-inverter/releases/latest/download/LocalDataInverter.apk">⬇ Scarica l'app</a>
-      <p class="dopo-tasto">Versione 1.16 · Android 7 o più recente · circa 5 MB · <a href="#installa">come si installa</a></p>
+      <p class="dopo-tasto">Versione 1.17 · Android 7 o più recente · circa 5 MB · <a href="#installa">come si installa</a></p>
       <div class="pregi">
         <span>☁️ Senza cloud</span>
         <span>🏠 Dati in locale</span>
@@ -191,9 +191,11 @@
     <ul class="marche">
       <li>Deye ibridi monofase con chiavetta Solarman <span class="stato ok">provato</span></li>
       <li>Afore monofase con chiavetta Solarman <span class="stato ok">provato</span></li>
-      <li>Deye trifase con chiavetta Solarman <span class="stato ok">provato</span></li>
+      <li>ZCS Azzurro ibrido monofase (HP e non HP) <span class="stato ok">provato</span></li>
       <li>Due Deye in parallelo (master e slave), con la somma dell'impianto <span class="stato ok">provato</span></li>
-      <li>Solis ibrido monofase <span class="stato prova">da provare con il vostro aiuto</span></li>
+      <li>Deye trifase con chiavetta Solarman <span class="stato prova">da provare con il vostro aiuto</span></li>
+      <li>Sofar da stringa e Sofar ibrido monofase <span class="stato prova">da provare con il vostro aiuto</span></li>
+      <li>Solis ibrido monofase (chiavetta S2-WL-ST) <span class="stato prova">in prova: batteria e consumo confermati, rete, FV ed energie da confermare</span></li>
       <li>Altre marche <span class="stato prova">da provare con il vostro aiuto</span></li>
     </ul>
     <p class="nota">Il vostro inverter non è tra i provati? Nell'app scegliete "Altro / non in elenco": la scheda "Esplora la rete" prepara un file da mandare nel gruppo, e con il vostro aiuto si aggiunge il vostro modello.</p>
@@ -204,9 +206,9 @@
   <div class="larga">
     <h2>Sicura per il tuo impianto</h2>
     <div class="griglia">
-      <div class="scheda"><span class="icona">🔒</span><h3>Solo lettura</h3><p>L'app legge i dati e basta: non manda nessun comando all'inverter e non cambia nessuna impostazione.</p></div>
+      <div class="scheda"><span class="icona">🔒</span><h3>Solo lettura</h3><p>L'app usa solo servizi locali già attivi sull'inverter o sulla chiavetta: può individuarli e leggerli. Se il servizio è chiuso, disattivato o risponde male, si ferma. Non abilita Modbus TCP, non scrive registri, non cambia impostazioni e non manda comandi di configurazione, riavvio o aggiornamento.</p></div>
       <div class="scheda"><span class="icona">🐢</span><h3>Delicata con la chiavetta</h3><p>Letture distanziate; se la chiavetta non risponde l'app rallenta da sola e riprende appena risponde.</p></div>
-      <div class="scheda"><span class="icona">🏠</span><h3>I dati dell'inverter restano a casa</h3><p>L'app li legge dalla chiavetta nella rete di casa e li salva solo sul telefono: non vengono inviati all'autore. Internet serve solo per meteo e previsione (Open-Meteo) e per la mappa con nuvole e pioggia (OpenStreetMap, EUMETSAT, RainViewer). <a href="#privacy">Dettagli</a></p></div>
+      <div class="scheda"><span class="icona">🏠</span><h3>I dati dell'inverter restano a casa</h3><p>L'app li legge dalla chiavetta nella rete di casa e li salva solo sul telefono: non vengono inviati all'autore. Internet serve solo per meteo e previsione (ICON-2I, Agenzia ItaliaMeteo) e per la cartina con nuvole e pioggia (EUMETSAT, radar della Protezione Civile). <a href="#privacy">Dettagli</a></p></div>
     </div>
   </div>
 </section>
@@ -230,7 +232,7 @@
   <div class="larga">
     <h2>Guide</h2>
     <div class="griglia">
-      <a class="scheda" href="guide/novita.txt" style="text-decoration:none"><span class="icona">🆕</span><h3>Novità e primo avvio</h3><p>La guida completa della versione 1.15 (la 1.16 aggiunge le condizioni d'uso).</p></a>
+      <a class="scheda" href="guide/novita.txt" style="text-decoration:none"><span class="icona">🆕</span><h3>Novità e primo avvio</h3><p>La guida completa della versione 1.17.</p></a>
       <a class="scheda" href="guide/funzioni.txt" style="text-decoration:none"><span class="icona">📋</span><h3>Tutte le funzioni</h3><p>L'elenco completo di quello che fa l'app.</p></a>
       <a class="scheda" href="guide/bolletta.txt" style="text-decoration:none"><span class="icona">💶</span><h3>Guida bolletta</h3><p>Dove trovare ogni voce in bolletta per avere costi giusti.</p></a>
       <a class="scheda" href="guide/elettrodomestici.txt" style="text-decoration:none"><span class="icona">🚦</span><h3>Guida elettrodomestici</h3><p>Come leggere il semaforo.</p></a>
@@ -238,17 +240,18 @@
   </div>
 </section>
 
-<!-- Privacy: descrive cosa fa la v1.16 (verificato nel codice il 31/10/2026). Se l'app cambia servizi o dati inviati, aggiornare qui. -->
+<!-- Privacy: descrive cosa fa la v1.17 (verificato nel codice il 12/11/2026). Se l'app cambia servizi o dati inviati, aggiornare qui. -->
 <section id="privacy">
   <div class="larga">
     <h2>Privacy e servizi esterni</h2>
     <div class="scheda condizioni">
-      <p><b>Cosa resta sul telefono.</b> Le letture dell'inverter (potenze, batteria, energia, allarmi), lo storico e le impostazioni (indirizzo IP e numero di serie della chiavetta, dati dell'impianto, tariffa, località) sono elaborati e salvati solo sul dispositivo. L'autore dell'app non ha server: questi dati non gli vengono inviati automaticamente.</p>
+      <p><b>Cosa resta sul telefono.</b> Le letture dell'inverter (potenze, batteria, energia, allarmi), lo storico e le impostazioni (indirizzo IP e numero di serie della chiavetta, dati dell'impianto, tariffa, località) sono elaborati e salvati solo sul dispositivo. Dalla versione 1.17 l'app salva anche, un mese alla volta, un file con le letture dell'inverter (una riga al minuto, solo mentre l'app è aperta): resta sul dispositivo e parte solo se premi «Esporta il mese» e scegli dove mandarlo. L'autore dell'app non ha server: questi dati non gli vengono inviati automaticamente.</p>
       <p><b>Cosa viene trasmesso a servizi esterni.</b> Per alcune funzioni l'app si collega a servizi di terzi. Come per ogni collegamento a internet, ognuno di questi servizi riceve l'indirizzo IP del dispositivo e i dati tecnici della richiesta (per esempio il tipo di browser).</p>
-      <p>• <b>Open-Meteo</b> (meteo e previsione FV): il nome della località che cerchi nelle impostazioni; poi, per la previsione, le coordinate della località scelta, l'inclinazione e l'orientamento dei pannelli. Secondo le condizioni di Open-Meteo, i registri del servizio possono contenere le coordinate e vengono cancellati dopo 90 giorni.<br>
-      • <b>OpenStreetMap</b> (mappa), <b>EUMETSAT</b> (nuvole) e <b>RainViewer</b> (pioggia): le richieste delle immagini della zona mostrata sulla mappa, a livello di regione.</p>
+      <p>• <b>MeteoHub, Agenzia ItaliaMeteo</b> (meteo e previsione FV): l'app scarica dal servizio le parti del file del modello ICON-2I che le servono; la posizione impostata serve a scegliere il punto della griglia ed è usata sul dispositivo, non viene scritta nelle richieste. Il servizio riceve le richieste di quei file, l'indirizzo IP e i dati tecnici della richiesta.<br>
+      • <b>EUMETSAT</b> (nuvole) e <b>Radar-DPC della Protezione Civile</b> (pioggia): le richieste delle immagini della zona mostrata sulla cartina, a livello di regione.</p>
       <p>Ognuno di questi servizi tratta i dati secondo le proprie condizioni e informative, consultabili sui rispettivi siti.</p>
       <p><b>Diagnostica ed Esplora la rete.</b> Sono file che si creano solo se li chiedi e che partono solo se li condividi tu, a chi scegli. La Diagnostica contiene la versione dell'app, la marca scelta, la data e i valori dei registri letti, tra cui il numero di serie dell'inverter; non contiene IP, MAC né numero di serie della chiavetta. Esplora la rete contiene le porte aperte dei dispositivi trovati in casa con gli indirizzi mascherati (resta solo l'ultimo numero); dalle risposte dei dispositivi l'app toglie automaticamente indirizzi, nomi di rete e numeri di serie che riconosce. Questi filtri automatici non garantiscono la rimozione di ogni informazione identificativa. Se mandi questi file all'autore per avere aiuto, lui li riceve: mandali solo a chi ti aiuta e non pubblicarli nei commenti.</p>
+      <p><b>Backup di Android.</b> L'app non disattiva il backup automatico di Android. Se sul telefono il backup su Google è acceso, i dati dell'app possono finire nel tuo backup Google e tornare su un telefono nuovo: impostazioni (indirizzo IP e numero di serie della chiavetta, dati dell'impianto, tariffa, posizione), storico e totali, e, se la dimensione lo permette, anche i file mensili. L'autore non vi ha accesso. Per spegnerlo: Impostazioni di Android → Google → Backup (i nomi dei menu cambiano da telefono a telefono) e disattiva il backup su Google; lì puoi anche cancellare i backup già fatti.</p>
       <p><b>Condizioni d'uso.</b> Dalla versione 1.16, per ricordare l'accettazione l'app salva sul dispositivo solo la versione delle condizioni accettate e la data.</p>
     </div>
   </div>
@@ -282,9 +285,9 @@
 
 <footer>
   <div class="larga">
-    <p>Local Data Inverter è un progetto indipendente e gratuito, non ufficiale. Deye, Afore, Solis e Solarman sono marchi dei rispettivi proprietari, citati solo per indicare la compatibilità.</p>
+    <p>Local Data Inverter è un progetto indipendente e gratuito, non ufficiale. Deye, Afore, Solis, Sofar, ZCS Azzurro e Solarman sono marchi dei rispettivi proprietari, citati solo per indicare la compatibilità.</p>
     <p>L'autore dell'app non ha server e non riceve automaticamente i dati degli utenti; meteo e mappe passano da servizi esterni. <a href="#privacy">Privacy e servizi esterni</a> · <a href="#condizioni">Condizioni d'uso</a></p>
-    <p>Mappe © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a> · le licenze delle librerie usate sono nell'app, Impostazioni → Licenze.</p>
+    <p>Meteo: modello ICON-2I, Agenzia ItaliaMeteo in cooperation with Arpae Emilia-Romagna Idro-Meteo-Clima Service (<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, dati elaborati dall'app) · radar pioggia: Radar-DPC, Dipartimento della Protezione Civile (<a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>, dati ricolorati dall'app) · nuvole: Contains modified EUMETSAT Meteosat product 2026 · cartina: Natural Earth (pubblico dominio) · le licenze delle librerie usate sono nell'app, Impostazioni → Licenze.</p>
   </div>
 </footer>
 

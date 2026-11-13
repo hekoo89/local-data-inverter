@@ -58,6 +58,7 @@
   }
   .tasto:hover { background: var(--verde-scuro); }
   .tasto.secondario { background: var(--scheda); color: var(--verde-scuro); border: 2px solid var(--verde); box-shadow: none; }
+  .tasti { display: flex; flex-wrap: wrap; gap: 14px; } /* Scarica e Ko-fi: distanti sia affiancati sia uno sotto l'altro */
   .dopo-tasto { font-size: 14px; color: var(--tenue); margin-top: 10px; }
   .pregi { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
   .pregi span { background: var(--verde-chiaro); color: var(--verde-scuro); font-weight: 600; font-size: 15px; padding: 6px 13px; border-radius: 999px; }
@@ -141,9 +142,11 @@
       <h1>Il tuo fotovoltaico, <span>sotto controllo</span></h1>
       <p class="sotto">App Android gratuita che legge l'inverter direttamente dalla chiavetta Wi-Fi Solarman, in casa. Niente cloud, niente account.</p>
       <!-- Il link scarica sempre l'ultima versione: nella release l'APK deve chiamarsi sempre LocalDataInverter.apk -->
-      <a class="tasto" href="https://github.com/hekoo89/local-data-inverter/releases/latest/download/LocalDataInverter.apk">⬇ Scarica l'app</a>
-      <!-- Ko-fi: semplice link (niente widget né script di Ko-fi sul sito), vedi deye/licenze.md -->
-      <a class="tasto secondario" href="https://ko-fi.com/localdatainverter" target="_blank" rel="noopener">☕ Offrimi un caffè</a>
+      <div class="tasti">
+        <a class="tasto" href="https://github.com/hekoo89/local-data-inverter/releases/latest/download/LocalDataInverter.apk">⬇ Scarica l'app</a>
+        <!-- Ko-fi: semplice link (niente widget né script di Ko-fi sul sito), vedi deye/licenze.md -->
+        <a class="tasto secondario" href="https://ko-fi.com/localdatainverter" target="_blank" rel="noopener">☕ Offrimi un caffè</a>
+      </div>
       <p class="dopo-tasto">Versione 1.17 · Android 7 o più recente · circa 5 MB · <a href="#installa">come si installa</a></p>
       <div class="pregi">
         <span>☁️ Senza cloud</span>
